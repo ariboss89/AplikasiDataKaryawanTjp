@@ -45,11 +45,9 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
         int y = (dim.height - getHeight()) / 2;
         setLocation(x, y);
         Refresh();
-        btnCetak.setVisible(false);
     }
     
     void Refresh(){
-        btnCetak.setEnabled(false);
         btnUpdate.setEnabled(false);
     }
     /**
@@ -69,7 +67,6 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
-        btnCetak = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -136,14 +133,6 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
             }
         });
 
-        btnCetak.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnCetak.setText("CETAK");
-        btnCetak.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCetakActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
         background1.setLayout(background1Layout);
         background1Layout.setHorizontalGroup(
@@ -160,10 +149,7 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
-                                .addComponent(btnCetak)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         background1Layout.setVerticalGroup(
@@ -177,9 +163,7 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnCetak))
+                .addComponent(btnUpdate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -215,7 +199,6 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
         Karyawan.setAgama(jTable1.getValueAt(row, 6).toString());
         Karyawan.setNo_hp(jTable1.getValueAt(row, 7).toString());
         Karyawan.setUrl(jTable1.getValueAt(row, 8).toString());
-        btnCetak.setEnabled(true);
         btnUpdate.setEnabled(true);
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -223,25 +206,6 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
         // TODO add your handling code here:
         new FormUbahDataKaryawan().show();
     }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
-        // TODO add your handling code here:
-        java.sql.Connection conn = new DbConnection().connect();
-            
-            try{
-                HashMap parameter = new HashMap();
-                File file = new File ("src/Report/ReportDataKaryawan.jasper");
-                String nik = Karyawan.getNik();
-                parameter.put("nik", nik);
-                JasperReport jp = (JasperReport) JRLoader.loadObject(file);
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jp, parameter,conn);
-                JasperViewer.viewReport(jasperPrint, false);
-                JasperViewer.setDefaultLookAndFeelDecorated(true);
-                          
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Data Tidak Bisa di Tampilkan Karna Gambar Rusak");
-            }
-    }//GEN-LAST:event_btnCetakActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
@@ -285,7 +249,6 @@ public class FormTampilDataKaryawan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Controller.Background background1;
-    private javax.swing.JButton btnCetak;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

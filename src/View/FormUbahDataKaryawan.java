@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.URL;
 import java.sql.Date;
@@ -156,6 +157,11 @@ public class FormUbahDataKaryawan extends javax.swing.JFrame {
         txtNik.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         txtTempatLahir.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTempatLahir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTempatLahirKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("TEMPAT LAHIR");
@@ -191,6 +197,11 @@ public class FormUbahDataKaryawan extends javax.swing.JFrame {
         jLabel5.setText("NAMA KARYAWAN");
 
         txtNama.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNamaKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("TANGGAL LAHIR");
@@ -208,6 +219,11 @@ public class FormUbahDataKaryawan extends javax.swing.JFrame {
         jLabel8.setText("NO HP");
 
         txtNoHp.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNoHp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNoHpKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("FOTO PEGAWAI");
@@ -438,6 +454,56 @@ public class FormUbahDataKaryawan extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void txtNamaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaKeyTyped
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+
+        if ((((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtNama.getText().length()== 0 && karakter == KeyEvent.VK_SPACE){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNamaKeyTyped
+
+    private void txtTempatLahirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTempatLahirKeyTyped
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+
+        if ((((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtTempatLahir.getText().length()== 0 && karakter == KeyEvent.VK_SPACE){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTempatLahirKeyTyped
+
+    private void txtNoHpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoHpKeyTyped
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+
+        if (!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtNoHp.getText().length()== 0 && karakter == KeyEvent.VK_SPACE){
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtNoHp.getText().length() >= 12){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNoHpKeyTyped
 
     /**
      * @param args the command line arguments

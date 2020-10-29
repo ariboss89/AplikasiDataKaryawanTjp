@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.URL;
 import java.sql.Date;
@@ -29,7 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author User
  */
-public class FormDataKaryawan extends javax.swing.JFrame {
+public class FormDataMaster extends javax.swing.JFrame {
 
     tb_karyawan kry = new tb_karyawan();
     String nik, nama, tempat, jenis_kelamin, alamat, agama, img;
@@ -37,7 +38,7 @@ public class FormDataKaryawan extends javax.swing.JFrame {
     Date tggl_lahir;
     String url;
     
-    public FormDataKaryawan() {
+    public FormDataMaster() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (dim.width - getWidth()) / 2;
@@ -83,7 +84,7 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         rdLaki2.setSelected(false);
         rdPerempuan.setSelected(false);
         jTextArea1.setText("");
-        txtAgama.setText("");
+        cbAgama.setSelectedIndex(0);
         txtNoHp.setText("");
         kry.setImg("src/Icon/avatar.png");
         ((Painter) canvas1).setImage(kry.getImg());
@@ -112,7 +113,6 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         rdLaki2 = new javax.swing.JRadioButton();
         rdPerempuan = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        txtAgama = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -127,6 +127,8 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         canvas1 = new Painter();
         btnSimpan = new javax.swing.JButton();
         btnSimpan1 = new javax.swing.JButton();
+        cbAgama = new javax.swing.JComboBox();
+        jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -187,6 +189,11 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         txtNik.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
         txtTempatLahir.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTempatLahir.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTempatLahirKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("TEMPAT LAHIR");
@@ -216,17 +223,25 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("AGAMA");
 
-        txtAgama.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("NAMA KARYAWAN");
 
         txtNama.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNama.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNamaKeyTyped(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("TANGGAL LAHIR");
 
         jDateChooser1.setDateFormatString("yyyy-MM-dd");
+        jDateChooser1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jDateChooser1KeyTyped(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("ALAMAT");
@@ -239,6 +254,11 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         jLabel8.setText("NO HP");
 
         txtNoHp.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNoHp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNoHpKeyTyped(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("FOTO PEGAWAI");
@@ -267,6 +287,12 @@ public class FormDataKaryawan extends javax.swing.JFrame {
             }
         });
 
+        cbAgama.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        cbAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PILIH", "ISLAM", "KRISTEN PROTESTAN", "KRISTEN KATOLIK", "BUDHA", "HINDU" }));
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("Maks File 5Mb");
+
         javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
         background1.setLayout(background1Layout);
         background1Layout.setHorizontalGroup(
@@ -275,22 +301,25 @@ public class FormDataKaryawan extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(background1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
                         .addComponent(btnSimpan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSimpan1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
                     .addComponent(txtTempatLahir)
-                    .addComponent(jLabel3)
                     .addComponent(rdLaki2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(rdPerempuan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtNik)
-                    .addComponent(jLabel4)
-                    .addComponent(txtAgama, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(background1Layout.createSequentialGroup()
+                        .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cbAgama, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNoHp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -303,8 +332,9 @@ public class FormDataKaryawan extends javax.swing.JFrame {
                 .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFoto))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnFoto)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         background1Layout.setVerticalGroup(
             background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,8 +377,8 @@ public class FormDataKaryawan extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtAgama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cbAgama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtNoHp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -357,7 +387,8 @@ public class FormDataKaryawan extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSimpan)
-                    .addComponent(btnSimpan1))
+                    .addComponent(btnSimpan1)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -388,9 +419,10 @@ public class FormDataKaryawan extends javax.swing.JFrame {
     private void btnFotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoActionPerformed
         // TODO add your handling code here:
         javax.swing.JFileChooser jfc = new JFileChooser();
-        FileFilter jpgFilter,gifFilter, bothFilter;
+        FileFilter jpgFilter,gifFilter, bothFilter, pngFilter;
         jpgFilter = new FileNameExtensionFilter(("Gambar JPEG"), "jpg");
         gifFilter = new FileNameExtensionFilter("Gambar JPEG dan GIF", "jpg","gif");
+        pngFilter = new FileNameExtensionFilter("Gambar PNG dan GIF", "png","gif");
         jfc.setAcceptAllFileFilterUsed(false);
         jfc.addChoosableFileFilter(jpgFilter);
         jfc.addChoosableFileFilter(gifFilter);
@@ -424,7 +456,7 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         tempat = txtTempatLahir.getText().trim();
         tggl_lahir = Date.valueOf(spf.format(jDateChooser1.getDate()));
         alamat = jTextArea1.getText().trim();
-        agama = txtAgama.getText().toUpperCase().trim();
+        agama = cbAgama.getSelectedItem().toString().toUpperCase().trim();
         no_hp = txtNoHp.getText().trim();
      
         if(txtNama.getText().equals("")){
@@ -445,9 +477,9 @@ public class FormDataKaryawan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Field Tidak Boleh Kosong");
             jTextArea1.requestFocus();
         }
-        else if(txtAgama.getText().equals("")){
+        else if(cbAgama.getSelectedItem().equals("PILIH")){
             JOptionPane.showMessageDialog(null, "Field Tidak Boleh Kosong");
-            txtAgama.requestFocus();
+            cbAgama.requestFocus();
         }
         else if(txtNoHp.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Field Tidak Boleh Kosong");
@@ -492,6 +524,61 @@ public class FormDataKaryawan extends javax.swing.JFrame {
         Refresh();
     }//GEN-LAST:event_btnSimpan1ActionPerformed
 
+    private void txtNoHpKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNoHpKeyTyped
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+
+        if (!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtNoHp.getText().length()== 0 && karakter == KeyEvent.VK_SPACE){
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtNoHp.getText().length() >= 12){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNoHpKeyTyped
+
+    private void txtNamaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNamaKeyTyped
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+
+        if ((((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtNama.getText().length()== 0 && karakter == KeyEvent.VK_SPACE){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNamaKeyTyped
+
+    private void txtTempatLahirKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTempatLahirKeyTyped
+        // TODO add your handling code here:
+        char karakter = evt.getKeyChar();
+
+        if ((((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
+            getToolkit().beep();
+            evt.consume();
+        }
+        
+        if(txtTempatLahir.getText().length()== 0 && karakter == KeyEvent.VK_SPACE){
+            getToolkit().beep();
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTempatLahirKeyTyped
+
+    private void jDateChooser1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jDateChooser1KeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jDateChooser1KeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -509,20 +596,20 @@ public class FormDataKaryawan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormDataKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormDataMaster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormDataKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormDataMaster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormDataKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormDataMaster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormDataKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormDataMaster.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormDataKaryawan().setVisible(true);
+                new FormDataMaster().setVisible(true);
             }
         });
     }
@@ -566,10 +653,12 @@ public class FormDataKaryawan extends javax.swing.JFrame {
     private javax.swing.JButton btnSimpan1;
     private javax.swing.ButtonGroup buttonGroup1;
     private java.awt.Canvas canvas1;
+    private javax.swing.JComboBox cbAgama;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -584,7 +673,6 @@ public class FormDataKaryawan extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JRadioButton rdLaki2;
     private javax.swing.JRadioButton rdPerempuan;
-    private javax.swing.JTextField txtAgama;
     private javax.swing.JTextField txtNama;
     private javax.swing.JTextField txtNik;
     private javax.swing.JTextField txtNoHp;

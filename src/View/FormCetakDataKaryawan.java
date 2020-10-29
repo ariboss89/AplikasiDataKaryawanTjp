@@ -58,6 +58,8 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
     private void Refresh() {
         txtNama.requestFocus();
         txtNama.setText("");    
+        jButton1.setEnabled(true);
+        btnCetak.setEnabled(false);
     }
 
     private void ShowNik(){
@@ -92,8 +94,9 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNama = new javax.swing.JTextField();
-        btnUpdate = new javax.swing.JButton();
+        btnCetak = new javax.swing.JButton();
         cbNik = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -156,11 +159,11 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
         txtNama.setEditable(false);
         txtNama.setHorizontalAlignment(javax.swing.JTextField.LEFT);
 
-        btnUpdate.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnUpdate.setText("CETAK");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnCetak.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnCetak.setText("CETAK");
+        btnCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnCetakActionPerformed(evt);
             }
         });
 
@@ -169,6 +172,14 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
         cbNik.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbNikItemStateChanged(evt);
+            }
+        });
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jButton1.setText("CETAK KESELURUHAN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -190,7 +201,9 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, background1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnUpdate)))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCetak)))
                 .addContainerGap())
         );
         background1Layout.setVerticalGroup(
@@ -206,9 +219,12 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(background1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(background1Layout.createSequentialGroup()
+                        .addComponent(btnCetak)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,7 +246,7 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
         java.sql.Connection conn = new DbConnection().connect();
             
@@ -247,7 +263,7 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
             }catch(Exception e){
                 JOptionPane.showMessageDialog(null, "Data Tidak Bisa di Tampilkan Karna Gambar Rusak");
             }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+    }//GEN-LAST:event_btnCetakActionPerformed
 
     private void cbNikItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbNikItemStateChanged
         // TODO add your handling code here:
@@ -263,12 +279,31 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
             res = stmt.executeQuery("select *from tb_karyawan WHERE nik = '"+cbNik.getSelectedItem().toString()+"'");
             while(res.next()){
                 txtNama.setText(res.getString("nama"));
-            }
+                jButton1.setEnabled(false);
+                btnCetak.setEnabled(true);
+           }
         }catch(SQLException ex){
             
         }
         }
     }//GEN-LAST:event_cbNikItemStateChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        java.sql.Connection conn = new DbConnection().connect();
+            
+            try{
+                HashMap parameter = new HashMap();
+                File file = new File ("src/Report/ReportKeseluruhan.jasper");
+                JasperReport jp = (JasperReport) JRLoader.loadObject(file);
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jp, parameter,conn);
+                JasperViewer.viewReport(jasperPrint, false);
+                JasperViewer.setDefaultLookAndFeelDecorated(true);
+                          
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, e +"");
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,9 +376,10 @@ public class FormCetakDataKaryawan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Controller.Background background1;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnCetak;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cbNik;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
