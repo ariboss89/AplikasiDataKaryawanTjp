@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87320994-da5f-4d95-8dcb-73518ca8f2a4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nik" class="java.lang.String"/>
+	<parameter name="bulan" class="java.lang.String"/>
+	<parameter name="tahun" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+c.nik,
+c.nama,
+c.alamat,
+c.no_hp,
+c.status,
+c.img,
+a.Id,
+a.gaji,
+a.lembur,
+a.totalgaji,
+a.bulan
+FROM tb_karyawan c
+RIGHT JOIN tb_penggajian a
+ON c.nik = a.nik
+WHERE c.nik = $P{nik} AND a.bulan = $P{bulan} AND a.tahun = $P{tahun}]]>
+	</queryString>
+	<field name="nik" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nama" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="alamat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_hp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="img" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="lembur" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalgaji" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bulan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="66" uuid="d096a62b-04fa-47be-bca6-ea997fc4bc1f"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="33" uuid="f591a7da-c76c-402a-b1fb-05554230546f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SLIP GAJI KARYAWAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="33" width="555" height="33" uuid="e469fbc5-4f37-4f57-9043-0d5b2f628405"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CV. TUAH JAYA PERDANA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="97" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="97" uuid="ee19c0d9-3c50-4898-8673-9b9b13296b8e"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="288" y="37" width="107" height="20" uuid="6369c12d-243b-4bd5-9cc0-c8fe9456b6e3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID SLIP GAJI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="411" y="37" width="126" height="20" uuid="c7c35da3-1488-4231-abaf-5fe16c595c23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="288" y="57" width="107" height="20" uuid="bdb7fe2c-6d44-444c-a63a-e048a761e819"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="17" width="107" height="20" uuid="385154f6-253f-42d1-ae4f-0afcaccb4d35"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BULAN & TAHUN]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="485" y="17" width="52" height="20" uuid="32d6bb6a-bdee-4e5c-a6e3-2c778c8fef7c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{tahun}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="17" width="74" height="20" uuid="e08f5c94-bc3a-44af-af0f-232362e4487a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{bulan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="57" width="126" height="20" uuid="15db5d59-49cc-49bd-b95b-d503d0b01223"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{nik}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="164" splitType="Stretch">
+			<rectangle>
+				<reportElement x="236" y="0" width="319" height="164" uuid="23881141-7884-4b3d-88d3-4bb74f1495a9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="236" height="164" uuid="190db365-9bab-4d3e-8e30-d9eb74780041"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="16" y="13" width="141" height="20" uuid="cd632363-6215-4c6a-8d9e-62b2178e46bb"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="13" width="249" height="20" uuid="97992a9d-ae7b-4fb1-846d-9fcfee63d999"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nama}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="43" width="141" height="20" uuid="521af9be-3fa2-44c0-9662-7ea3388b83f4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ALAMAT]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="43" width="249" height="45" uuid="52192af9-58d9-419e-aadc-a0db77abe59d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{alamat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="88" width="141" height="20" uuid="92d6bbd2-fcac-42bc-9503-234d231a4c96"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KONTAK]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="88" width="249" height="20" uuid="2c0f18b0-032f-41fa-87f5-c14affe2a7b3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{no_hp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="108" width="141" height="20" uuid="50d32c7d-90d8-43c1-9e19-d709e4e9e153"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL LEMBUR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="128" width="141" height="20" uuid="1c34d616-2801-4fdc-ab32-52de1b183d08"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL GAJI]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="288" y="108" width="249" height="20" uuid="c3eef79c-962d-40bd-a81e-51d86e9bd026"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{lembur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="128" width="249" height="20" uuid="bc0370d9-49b6-4694-b83c-8803aef160f2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{totalgaji}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="122" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="122" uuid="32229f4f-6863-47c2-afa6-aa484de593d8"/>
+			</rectangle>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="411" y="0" width="100" height="20" uuid="dadf1cef-37fc-47d8-8ff7-7eb8f125027e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="322" y="102" width="189" height="20" uuid="3368bf8b-4951-438f-b51f-11646d26fe23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PEMILIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="0" width="89" height="20" uuid="4c3f528f-9bba-4ca0-bd2f-6e03a7827e64"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MENGETAHUI,]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

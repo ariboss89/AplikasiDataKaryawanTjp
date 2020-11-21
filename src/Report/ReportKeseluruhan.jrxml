@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6e199302-3c9c-4c13-b70b-60b859982e42">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="104"/>
+	<property name="ireport.y" value="3"/>
 	<queryString>
 		<![CDATA[SELECT *FROM tb_karyawan]]>
 	</queryString>
@@ -37,9 +37,9 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="66" splitType="Stretch">
+		<band height="86" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="0" width="555" height="66" uuid="870e5039-8898-42ab-afc2-3adc4164d1dc"/>
+				<reportElement x="0" y="0" width="555" height="86" uuid="870e5039-8898-42ab-afc2-3adc4164d1dc"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="0" y="33" width="555" height="33" uuid="bfa8d136-f7e9-4283-82c9-a7b9b8b8f216"/>
@@ -55,10 +55,17 @@
 				</textElement>
 				<text><![CDATA[LAPORAN DATA KARYAWAN]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="20" y="66" width="514" height="20" uuid="96a895b6-f5ce-4a84-8106-b9732f13a3aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JL. GANET, PERUMAHAN BUKIT RAYA, BLOK CATUR NO.2, TELP 0812 68643631]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="18" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="20" splitType="Stretch">

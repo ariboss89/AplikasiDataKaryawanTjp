@@ -127,7 +127,6 @@
         <Component class="javax.swing.JPasswordField" name="txtPassword">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="jpasswordfield"/>
           </Properties>
         </Component>
       </SubComponents>

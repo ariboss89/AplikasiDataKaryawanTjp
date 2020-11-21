@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.8)
-# Date: 2020-10-13 20:47:31
+# Date: 2020-11-22 01:05:01
 # Generator: MySQL-Front 5.3  (Build 4.81)
 
 /*!40101 SET NAMES utf8 */;
@@ -37,6 +37,7 @@ CREATE TABLE `tb_karyawan` (
   `agama` varchar(255) COLLATE latin1_bin DEFAULT NULL,
   `no_hp` varchar(12) COLLATE latin1_bin DEFAULT NULL,
   `img` varchar(255) COLLATE latin1_bin DEFAULT NULL,
+  `status` varchar(255) COLLATE latin1_bin DEFAULT NULL,
   PRIMARY KEY (`nik`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_bin;
 
@@ -45,7 +46,7 @@ CREATE TABLE `tb_karyawan` (
 #
 
 /*!40000 ALTER TABLE `tb_karyawan` DISABLE KEYS */;
-INSERT INTO `tb_karyawan` VALUES ('KRY0001','Queena','Kuala Lumpur','2020-08-04','PEREMPUAN','Ganet Km 11','ISLAM','89101010111','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg'),('KRY0002','Yooman','Tanjungpinang','2002-08-07','LAKI- LAKI','Km 14 Arah Kijang','ISLAM','081994554345','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg'),('KRY0003','Noviayu','Tanjungpinang','1999-05-07','PEREMPUAN','Jl. Salam','ISLAM','081976542322','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg'),('KRY0004','Bella Reuni','Serasan','1995-01-24','PEREMPUAN','Batu 7','ISLAM','089976221495','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg'),('KRY0005','Hanson','Tanjungpinang','1995-08-06','LAKI- LAKI','jl. Gudang Minyak','BUDHA','081236781786','C:\\Users\\User\\Pictures\\Saved Pictures\\blue-wallpaper-27-800x500.jpg');
+INSERT INTO `tb_karyawan` VALUES ('KRY0001','Queena','Kuala Lumpur','2020-08-04','PEREMPUAN','Ganet Km 11','ISLAM','89101010111','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg','TETAP'),('KRY0002','Yooman','Tanjungpinang','2002-08-07','LAKI- LAKI','Km 14 Arah Kijang','ISLAM','081994554345','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg','SEMENTARA'),('KRY0003','Noviayu','Tanjungpinang','1999-05-07','PEREMPUAN','Jl. Salam','ISLAM','081976542322','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg','TETAP'),('KRY0004','Bella Reuni','Serasan','1995-01-24','PEREMPUAN','Batu 7','ISLAM','089976221495','C:\\Users\\User\\Pictures\\2019-07\\1538310254430.jpg','TETAP'),('KRY0005','Hanson','Tanjungpinang','1995-08-06','LAKI- LAKI','jl. Gudang Minyak','BUDHA','081236781786','C:\\Users\\User\\Pictures\\Saved Pictures\\blue-wallpaper-27-800x500.jpg','SEMENTARA'),('KRY0006','Lee Chong Wei','Singkawang','1997-10-08','LAKI- LAKI','Maniseaaa','BUDHA','09128191011','C:\\Users\\User\\Pictures\\2018-05\\FJIMG_20200125_131916_1 (1).jpg','SEMENTARA'),('KRY0007','Siti Chairani','Tanjungpinang','1994-10-13','PEREMPUAN','Gudang Minyak','ISLAM','081268643631','C:\\Users\\User\\Pictures\\2018-09\\1537079686862.jpg','SEMENTARA');
 /*!40000 ALTER TABLE `tb_karyawan` ENABLE KEYS */;
 
 #
@@ -56,6 +57,7 @@ DROP TABLE IF EXISTS `tb_login`;
 CREATE TABLE `tb_login` (
   `username` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(255) DEFAULT NULL,
+  `role` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -63,4 +65,29 @@ CREATE TABLE `tb_login` (
 # Data for table "tb_login"
 #
 
-INSERT INTO `tb_login` VALUES ('admin','e10adc3949ba59abbe56e057f20f883e'),('ariboss89','25d55ad283aa400af464c76d713c07ad'),('handoko123','25f9e794323b453885f5181f1b624d0b'),('hanson123','e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `tb_login` VALUES ('admin','e10adc3949ba59abbe56e057f20f883e','ADMIN'),('ariboss89','e10adc3949ba59abbe56e057f20f883e','ADMIN'),('handoko123','e10adc3949ba59abbe56e057f20f883e','ADMIN'),('hanson123','e10adc3949ba59abbe56e057f20f883e','SUPERADMIN');
+
+#
+# Structure for table "tb_penggajian"
+#
+
+DROP TABLE IF EXISTS `tb_penggajian`;
+CREATE TABLE `tb_penggajian` (
+  `Id` varchar(11) NOT NULL DEFAULT '',
+  `nik` varchar(50) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `gaji` int(11) DEFAULT NULL,
+  `lembur` int(11) DEFAULT NULL,
+  `totalgaji` int(11) DEFAULT NULL,
+  `bulan` varchar(50) DEFAULT NULL,
+  `tahun` int(4) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+#
+# Data for table "tb_penggajian"
+#
+
+/*!40000 ALTER TABLE `tb_penggajian` DISABLE KEYS */;
+INSERT INTO `tb_penggajian` VALUES ('PNG0001','KRY0001','TETAP',2000000,3,2060000,'November',2020),('PNG0002','KRY0002','SEMENTARA',1500000,20,1900000,'November',2020);
+/*!40000 ALTER TABLE `tb_penggajian` ENABLE KEYS */;

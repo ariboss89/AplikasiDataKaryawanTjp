@@ -18,13 +18,22 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class tb_login {
-    private static String username;
+    public static String username;
     private String password;
     private String konfirmasi;
     private DbConnection con;
     private Statement st;
     private ResultSet res;
     private String query;
+    public static String role;
+
+    public static String getRole() {
+        return role;
+    }
+
+    public static void setRole(String role) {
+        tb_login.role = role;
+    }
 
     public String getKonfirmasi() {
         return konfirmasi;
@@ -57,7 +66,6 @@ public class tb_login {
             st = con.connect().createStatement();
             res = st.executeQuery("select *from tb_login where username ='" + username + "' And password = '" + password + "'");
             if (res.next()) {
-                tb_login.setUsername(username);
                 JOptionPane.showMessageDialog(null, "Welcome " + username);
                 new FormUtama().setVisible(true);
             } 

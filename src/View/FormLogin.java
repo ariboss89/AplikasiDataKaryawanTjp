@@ -5,13 +5,14 @@
  */
 package View;
 
+import Controller.DbConnection;
 import Model.tb_login;
-import java.awt.Color;
 import java.math.BigInteger;
 import java.security.MessageDigest;
-import javax.swing.BorderFactory;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
 
 /**
  *
@@ -19,6 +20,9 @@ import javax.swing.UIManager;
  */
 public class FormLogin extends javax.swing.JFrame {
 
+    DbConnection con;
+    Statement st;
+    ResultSet rs;
     tb_login lgn = new tb_login();
 
     public FormLogin() {
@@ -72,7 +76,6 @@ public class FormLogin extends javax.swing.JFrame {
         });
 
         txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtPassword.setText("jpasswordfield");
 
         javax.swing.GroupLayout background1Layout = new javax.swing.GroupLayout(background1);
         background1.setLayout(background1Layout);
@@ -147,8 +150,23 @@ public class FormLogin extends javax.swing.JFrame {
         } else if (password.equals("")) {
             JOptionPane.showMessageDialog(null, "Field Password Tidak Boleh Kosong");
         } else {
-            lgn.Login(username, lgn.getPassword());
-            dispose();
+            con = new DbConnection();
+            try{
+                st = con.connect().createStatement();
+                rs = st.executeQuery("SELECT *FROM tb_login WHERE username = '"+username+"' AND password = '"+lgn.getPassword()+"'");
+                if(rs.next()){
+                    tb_login.setUsername(username);
+                    JOptionPane.showMessageDialog(null, "WELCOME "+username);
+                    new FormUtama().show();
+                    dispose();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "PASSWORD dan USERNAME salah !!");
+                    txtUsername.requestFocus();
+                }
+            }catch(SQLException x){
+                
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
