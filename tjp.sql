@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version: 5.5.8)
-# Date: 2020-11-22 01:05:01
+# Date: 2020-11-26 20:56:50
 # Generator: MySQL-Front 5.3  (Build 4.81)
 
 /*!40101 SET NAMES utf8 */;
@@ -77,6 +77,7 @@ CREATE TABLE `tb_penggajian` (
   `nik` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `gaji` int(11) DEFAULT NULL,
+  `alfa` int(11) DEFAULT NULL,
   `lembur` int(11) DEFAULT NULL,
   `totalgaji` int(11) DEFAULT NULL,
   `bulan` varchar(50) DEFAULT NULL,
@@ -89,5 +90,5 @@ CREATE TABLE `tb_penggajian` (
 #
 
 /*!40000 ALTER TABLE `tb_penggajian` DISABLE KEYS */;
-INSERT INTO `tb_penggajian` VALUES ('PNG0001','KRY0001','TETAP',2000000,3,2060000,'November',2020),('PNG0002','KRY0002','SEMENTARA',1500000,20,1900000,'November',2020);
+INSERT INTO `tb_penggajian` VALUES ('PNG0001','KRY0001','TETAP',2000000,0,3,2060000,'November',2020),('PNG0002','KRY0002','SEMENTARA',1500000,0,20,1900000,'November',2020),('PNG0003','KRY0003','TETAP',2500000,2,12,2640000,'NOVEMBER',2020),('PNG0004','KRY0004','TETAP',2500000,0,10,2700000,'NOVEMBER',2020);
 /*!40000 ALTER TABLE `tb_penggajian` ENABLE KEYS */;

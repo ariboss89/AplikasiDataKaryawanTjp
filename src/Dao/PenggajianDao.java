@@ -23,12 +23,12 @@ public class PenggajianDao extends tb_penggajian{
     ResultSet res;
     String query;
     
-    public void Save(String Id, String nik, String status, int gaji, int lembur, int totalgaji, String bulan, String tahun) {
+    public void Save(String Id, String nik, String status, int gaji, int alfa, int lembur, int totalgaji, String bulan, String tahun) {
         con = new DbConnection();
         con.connect();
         try {
             st = con.conn.createStatement();
-            query = "insert into tb_penggajian(Id, nik, status, gaji, lembur, totalgaji, bulan, tahun)values('" + Id + "','" + nik + "','" + status + "','" + gaji + "','" + lembur+ "','" + totalgaji + "', '"+bulan+"', '"+tahun+"')";
+            query = "insert into tb_penggajian(Id, nik, status, gaji, alfa, lembur, totalgaji, bulan, tahun)values('" + Id + "','" + nik + "','" + status + "','" + gaji + "','" + alfa+ "','" + lembur+ "','" + totalgaji + "', '"+bulan+"', '"+tahun+"')";
             st.executeUpdate(query);
             st.close();
             con.conn.close();
@@ -37,12 +37,12 @@ public class PenggajianDao extends tb_penggajian{
         }
     }
     
-    public void Update(String Id, int lembur, int totalgaji, String bulan, String tahun) {
+    public void Update(String Id, int alfa, int lembur, int totalgaji, String bulan, String tahun) {
         con = new DbConnection();
         con.connect();
         try {
             st = con.conn.createStatement();
-            query = "update tb_penggajian set lembur = '"+lembur+"', totalgaji = '"+totalgaji+"', bulan = '"+bulan+"', tahun = '"+tahun+"' where Id = '" + Id + "'";
+            query = "update tb_penggajian set alfa = '"+alfa+"', lembur = '"+lembur+"',totalgaji = '"+totalgaji+"', bulan = '"+bulan+"', tahun = '"+tahun+"' where Id = '" + Id + "'";
             st.executeUpdate(query);
             st.close();
             con.conn.close();
@@ -83,24 +83,25 @@ public class PenggajianDao extends tb_penggajian{
             }
             query = "select *from tb_penggajian order by Id Asc";
             res = st.executeQuery(query);
-            data = new String[jumlahBaris][8];
+            data = new String[jumlahBaris][9];
             int r = 0;
             while (res.next()) {
                 data[r][0] = res.getString("Id");
                 data[r][1] = res.getString("nik");
                 data[r][2] = res.getString("status");
                 data[r][3] = res.getString("gaji");
-                data[r][4] = res.getString("lembur");
-                data[r][5] = res.getString("totalgaji");
-                data[r][6] = res.getString("bulan");
-                data[r][7] = res.getString("tahun");
+                data[r][4] = res.getString("alfa");
+                data[r][5] = res.getString("lembur");
+                data[r][6] = res.getString("totalgaji");
+                data[r][7] = res.getString("bulan");
+                data[r][8] = res.getString("tahun");
                 r++;
             }
             int jmlBaris = r;
             String[][] tmpArray = data;
-            data = new String[jmlBaris][8];
+            data = new String[jmlBaris][9];
             for (r = 0; r < jmlBaris; r++) {
-                for (int c = 0; c < 8; c++) {
+                for (int c = 0; c < 9; c++) {
                     data[r][c] = tmpArray[r][c];
                 }
             }
@@ -128,24 +129,25 @@ public class PenggajianDao extends tb_penggajian{
             }
             query = "SELECT *FROM tb_penggajian WHERE Id like '%"+search+"%' or nik like '%"+search+"%' or bulan like '%"+search+"%'";
             res = st.executeQuery(query);
-            data = new String[jumlahBaris][8];
+            data = new String[jumlahBaris][9];
             int r = 0;
             while (res.next()) {
                 data[r][0] = res.getString("Id");
                 data[r][1] = res.getString("nik");
                 data[r][2] = res.getString("status");
                 data[r][3] = res.getString("gaji");
-                data[r][4] = res.getString("lembur");
-                data[r][5] = res.getString("totalgaji");
-                data[r][6] = res.getString("bulan");
-                data[r][7] = res.getString("tahun");
+                data[r][4] = res.getString("alfa");
+                data[r][5] = res.getString("lembur");
+                data[r][6] = res.getString("totalgaji");
+                data[r][7] = res.getString("bulan");
+                data[r][8] = res.getString("tahun");
                 r++;
             }
             int jmlBaris = r;
             String[][] tmpArray = data;
-            data = new String[jmlBaris][8];
+            data = new String[jmlBaris][9];
             for (r = 0; r < jmlBaris; r++) {
-                for (int c = 0; c < 8; c++) {
+                for (int c = 0; c < 9; c++) {
                     data[r][c] = tmpArray[r][c];
                 }
             }

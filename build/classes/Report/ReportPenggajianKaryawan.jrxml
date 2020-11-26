@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87320994-da5f-4d95-8dcb-73518ca8f2a4">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="96"/>
 	<parameter name="nik" class="java.lang.String"/>
 	<parameter name="bulan" class="java.lang.String"/>
 	<parameter name="tahun" class="java.lang.String"/>
@@ -15,6 +15,7 @@ c.no_hp,
 c.status,
 c.img,
 a.Id,
+a.alfa,
 a.gaji,
 a.lembur,
 a.totalgaji,
@@ -43,6 +44,9 @@ WHERE c.nik = $P{nik} AND a.bulan = $P{bulan} AND a.tahun = $P{tahun}]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Id" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="alfa" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="gaji" class="java.lang.Integer">
@@ -130,12 +134,12 @@ WHERE c.nik = $P{nik} AND a.bulan = $P{bulan} AND a.tahun = $P{tahun}]]>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="164" splitType="Stretch">
+		<band height="182" splitType="Stretch">
 			<rectangle>
-				<reportElement x="236" y="0" width="319" height="164" uuid="23881141-7884-4b3d-88d3-4bb74f1495a9"/>
+				<reportElement x="236" y="0" width="319" height="182" uuid="23881141-7884-4b3d-88d3-4bb74f1495a9"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="0" y="0" width="236" height="164" uuid="190db365-9bab-4d3e-8e30-d9eb74780041"/>
+				<reportElement x="0" y="0" width="236" height="182" uuid="190db365-9bab-4d3e-8e30-d9eb74780041"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="16" y="13" width="141" height="20" uuid="cd632363-6215-4c6a-8d9e-62b2178e46bb"/>
@@ -174,29 +178,41 @@ WHERE c.nik = $P{nik} AND a.bulan = $P{bulan} AND a.tahun = $P{tahun}]]>
 				<textFieldExpression><![CDATA[$F{no_hp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="16" y="108" width="141" height="20" uuid="50d32c7d-90d8-43c1-9e19-d709e4e9e153"/>
+				<reportElement x="16" y="128" width="141" height="20" uuid="50d32c7d-90d8-43c1-9e19-d709e4e9e153"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL LEMBUR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="16" y="128" width="141" height="20" uuid="1c34d616-2801-4fdc-ab32-52de1b183d08"/>
+				<reportElement x="16" y="148" width="141" height="20" uuid="1c34d616-2801-4fdc-ab32-52de1b183d08"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL GAJI]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="288" y="108" width="249" height="20" uuid="c3eef79c-962d-40bd-a81e-51d86e9bd026"/>
+				<reportElement x="288" y="128" width="249" height="20" uuid="c3eef79c-962d-40bd-a81e-51d86e9bd026"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{lembur}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="288" y="128" width="249" height="20" uuid="bc0370d9-49b6-4694-b83c-8803aef160f2"/>
+				<reportElement x="288" y="148" width="249" height="20" uuid="bc0370d9-49b6-4694-b83c-8803aef160f2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{totalgaji}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="288" y="108" width="249" height="20" uuid="f81acd97-45c2-4fa3-8673-183c80cf40a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{alfa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="108" width="141" height="20" uuid="ed6c6d71-73c7-4947-acad-e0c918fa2dd5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL ALFA]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
